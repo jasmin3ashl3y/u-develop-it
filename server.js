@@ -6,8 +6,6 @@ const apiRoutes = require('./routes/apiRoutes');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// Add near the top of the file
-const apiRoutes = require('./routes/apiRoutes');
 
 // Express middlemare
 app.use(express.urlencoded({ extended: false }));
