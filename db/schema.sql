@@ -1,7 +1,7 @@
+DROP TABLE IF EXISTS voters;
 DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS candidates;
 DROP TABLE IF EXISTS parties;
-DROP TABLE IF EXISTS voters;
 
 
 CREATE TABLE votes (
@@ -11,7 +11,7 @@ CREATE TABLE votes (
     industry_connected BOOLEAN NOT NULL
 );
 
-CREATE TABLE voters (
+CREATE TABLE votes (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     voter_id INTEGER NOT NULL,
     candidate_id INTEGER NOT NULL,
@@ -19,6 +19,12 @@ CREATE TABLE voters (
     CONSTRAINT uc_voter UNIQUE (voter_id),
     CONSTRAINT fk_voter FOREIGN KEY (voter_id) REFERENCES voters(id) ON DELETE CASCADE,
     CONSTRAINT fk_candidate FOREIGN KEY (candidate_id) REFERENCES candidates(id) ON DELETE CASCADE
+);
+
+CREATE TABLE parties (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  description TEXT
 );
 
 CREATE TABLE candidates (
@@ -31,10 +37,12 @@ CREATE TABLE candidates (
 );
 
 
-CREATE TABLE parties (
+CREATE TABLE voters (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  description TEXT
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 );
 
 
